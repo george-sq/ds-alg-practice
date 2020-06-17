@@ -28,6 +28,52 @@ from typing import Sequence
 #  
 #  Related Topics 数组 二分查找 分治算法
 
+# 解法 1
+# def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+#     ret_val = 0.0
+#     len_1 = len(nums1)
+#     len_2 = len(nums2)
+#     sum_len = len_1 + len_2
+#     counter = 0
+#     l_all = []
+#     # nums1 为空
+#     if 0 == len_1:
+#         l_all.extend(nums2)
+#         counter = sum_len
+#     # nums2 为空
+#     if 0 == len_2:
+#         l_all.extend(nums1)
+#         counter = sum_len
+#     # 合并的 正序数组
+#     idx_1, idx_2 = 0, 0
+#     while counter != sum_len:
+#         # 列表1 取数完毕
+#         if idx_1 == len_1:
+#             l_all.extend(nums2[idx_2:])
+#             break
+#             pass
+#         # 列表2 取数完毕
+#         if idx_2 == len_2:
+#             l_all.extend(nums1[idx_1:])
+#             break
+#             pass
+#         # 开始对比数组，进行取数
+#         if nums1[idx_1] < nums2[idx_2]:
+#             l_all.append(nums1[idx_1])
+#             idx_1 += 1
+#             pass
+#         else:
+#             l_all.append(nums2[idx_2])
+#             idx_2 += 1
+#             pass
+#         counter += 1
+#     idx_m = (sum_len - 1) // 2
+#     if 0 == sum_len % 2:
+#         ret_val = (l_all[idx_m] + l_all[idx_m + 1]) / 2
+#     else:
+#         ret_val = l_all[idx_m]
+#     return ret_val
+
 
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
@@ -35,28 +81,53 @@ class Solution:
         ret_val = 0.0
         len_1 = len(nums1)
         len_2 = len(nums2)
-        total_len = len_1 + len_2
-        half_len = total_len / 2
-        max_len = max(len_1, len_2)
-        l_temp = []
-        # 构建合并的 正序数组
-
-        # 计算中位数
-        if 0 == total_len % 2:
-            ret_val = (l_temp[-1] + l_temp[-2]) / 2
-            pass
+        sum_len = len_1 + len_2
+        counter = 0
+        l_all = []
+        # nums1 为空
+        if 0 == len_1:
+            l_all.extend(nums2)
+            counter = sum_len
+        # nums2 为空
+        if 0 == len_2:
+            l_all.extend(nums1)
+            counter = sum_len
+        # 合并的 正序数组
+        idx_1, idx_2 = 0, 0
+        while counter != sum_len:
+            # 列表1 取数完毕
+            if idx_1 == len_1:
+                l_all.extend(nums2[idx_2:])
+                break
+                pass
+            # 列表2 取数完毕
+            if idx_2 == len_2:
+                l_all.extend(nums1[idx_1:])
+                break
+                pass
+            # 开始对比数组，进行取数
+            if nums1[idx_1] < nums2[idx_2]:
+                l_all.append(nums1[idx_1])
+                idx_1 += 1
+                pass
+            else:
+                l_all.append(nums2[idx_2])
+                idx_2 += 1
+                pass
+            counter += 1
+        idx_m = (sum_len - 1) // 2
+        if 0 == sum_len % 2:
+            ret_val = (l_all[idx_m] + l_all[idx_m + 1]) / 2
         else:
-            ret_val = float(l_temp[-1])
-            pass
-        pass
+            ret_val = l_all[idx_m]
         return ret_val
 # leetcode submit region end(Prohibit modification and deletion)
 
 
 def app():
     solution = Solution()
-    l_nums_1 = [1, 2]
-    l_nums_2 = [3, 4]
+    l_nums_1 = [1, 2, 3, 4]
+    l_nums_2 = []
     result = solution.findMedianSortedArrays(l_nums_1, l_nums_2)
     print(result)
     pass
