@@ -12,16 +12,12 @@
 # 所以返回 [0, 1]
 #  
 #  Related Topics 数组 哈希表
-from typing import List
-from typing import Dict
-from typing import Tuple
-from typing import Sequence
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
 
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum(self, nums, target):
         ret_val = []
         # 暴力方法
         # for i, element_i in enumerate(nums):

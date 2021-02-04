@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Date   : 2021/1/4 16:56
+@Date   : 2021/1/5 08:55
 @Author : qiangzi
-@File   : tree.py
+@File   : common.py
 @Todo   : something
 """
 
 import logging
-from typing import List
 
 # __all__ = []
 #
@@ -20,37 +19,23 @@ from typing import List
 
 class Node(object):
 
-    def __init__(self, data, children):
+    def __init__(self, data=None, pre_node=None, next_node=None, children=None):
         """
-        :param data: 当前节点值
+
+        :param data: 当前节点的数据值
+        :param pre_node: 前驱结点
+        :param next_node: 后继结点
         :param children: 子节点列表
         """
+
         self.data = data
+        self.next_node = next_node
+        self.pre_node = pre_node
         self.children = children
-    pass
-
-
-class TreeNode(Node):
-
-    def __init__(self, data, children):
-        super().__init__(data, children)
-        self.left = None
-        self.right = None
-
-    pass
-
-
-class Tree(object):
-
-    def __init__(self, node_list: List[Node]):
-        self.node_size = len(node_list)
-        self.depth = None  # 树的深度
-        self.level = None  # 树的层数
         pass
-    pass
 
-
-class BinaryTree(object):
+    def __str__(self):
+        return f"<Node-{id(self)}: data={self.data}, next={id(self.next_node)}, pre={id(self.pre_node)}, children={id(self.children)}>"
     pass
 
 
