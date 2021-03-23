@@ -28,11 +28,11 @@ class Queue(object):
             并发队列: 操作具有线程安全特点的队列
     """
 
-    def __init__(self, element_list=(), size=None):
+    def __init__(self, element_list=(), max_length=256):
         self.element_list = []  # 队列元素
         self.head = None  # 队头元素
         self.tail = None  # 队尾元素
-        self.size = 0  # 队列大小
+        self.max_length = max_length  # 队列的最大长度
         self.length = 0  # 队列元素数目
         self.data_init(element_list)  # 队列数据初始化
         pass

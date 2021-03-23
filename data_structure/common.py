@@ -7,25 +7,20 @@
 @Todo   : something
 """
 
-import logging
-
-# __all__ = []
-#
-# __log_format = "%(asctime)s [ %(levelname)-7s ] | %(filename)-24s(line:%(lineno)-4s)-%(process)d(%(thread)d) || %(message)s"
-# __date_format = "%Y-%m-%d(%A) %H:%M:%S(%Z)"
-# logging.basicConfig(level=logging.DEBUG, format=__log_format, datefmt=__date_format)
-# logger = logging.getLogger(__name__)
-
 
 class Node(object):
+    """
+    数据节点
+    """
 
     def __init__(self, data=None, pre_node=None, next_node=None, children=None):
         """
-
-        :param data: 当前节点的数据值
-        :param pre_node: 前驱结点
-        :param next_node: 后继结点
-        :param children: 子节点列表
+        数据节点(Node)初始化
+        Args:
+            data: 当前节点的数据值
+            pre_node: 前驱结点
+            next_node: 后继结点
+            children: 子节点列表
         """
 
         self.data = data

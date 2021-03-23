@@ -13,6 +13,10 @@ from common import Node
 
 
 class LinkedList(object):
+    """
+    链表
+    """
+
     head = None
     tail = None
     size = 0

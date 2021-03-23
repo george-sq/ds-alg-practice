@@ -3,24 +3,24 @@
 """
 @Date   : 2021/1/6 17:10
 @Author : qiangzi
-@File   : ds_heap_stack.py
-@Todo   : 堆栈: 元素后进先出(LIFO)
+@File   : ds_stack.py
+@Todo   : 栈: 元素后进先出(LIFO)
 """
 
 
-class HeapStack(object):
-    """堆栈"""
+class Stack(object):
+    """栈"""
 
-    def __init__(self, element_list=(), size=None):
+    def __init__(self, element_list=(), max_length=256):
         self.element_list = []  # 堆栈元素集合
         self.top = None  # 栈顶元素
-        self.size = size  # 堆栈长度
+        self.max_length = max_length  # 堆栈的最大长度
         self.length = 0  # 堆栈元素数目
         self.data_init(element_list)  # 堆栈数据初始化
         pass
 
     def __str__(self):
-        return f"<HeapStack-{id(self)}: elements={self.element_list}>"
+        return f"<Stack-{id(self)}: elements={self.element_list}>"
 
     def data_init(self, element_list):
         for item in element_list:
@@ -30,7 +30,7 @@ class HeapStack(object):
 
     def push(self, element):
         """入栈"""
-        if not self.size or self.length < self.size:
+        if self.length < self.max_length:
             if self.element_list:
                 self.element_list.append(element)
                 pass
@@ -40,7 +40,7 @@ class HeapStack(object):
             self.top = element
             self.length += 1
         else:
-            raise EOFError("堆栈已满")
+            raise MemoryError("堆栈已满")
         return self
 
     def pop(self):
@@ -52,7 +52,7 @@ class HeapStack(object):
             self.length -= 1
             pass
         else:
-            raise EOFError("堆栈已空")
+            raise MemoryError("堆栈已空")
         pass
         return ret_val
 
@@ -79,7 +79,7 @@ class HeapStack(object):
 
 def app():
     a = [1, 5, 9, 8, 2]
-    hst = HeapStack(a)
+    hst = Stack(a)
     print(hst)
     hst.push(4)
     print(hst)
@@ -92,7 +92,6 @@ def app():
     print(hst)
     hst.pop()
     print(hst)
-    "[{]}"
     pass
 
 
